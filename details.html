@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopNow - Product Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .navbar {
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .card {
+      border: none;
+      border-radius: 16px;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .card img {
+      object-fit: cover;
+      height: 200px;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+    }
+
+    .btn-success,
+    .btn-primary {
+      border-radius: 20px;
+      padding: 5px 12px;
+    }
+
+    #cart {
+      position: fixed;
+      right: 20px;
+      top: 80px;
+      width: 300px;
+      z-index: 1000;
+    }
+
+    @media (max-width: 768px) {
+      #cart {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        width: 100%;
+        top: auto;
+        border-top: 2px solid #ccc;
+        background: #fff;
+        padding-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">🛒 ShopNow</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Home</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Cart Summary -->
+  <div id="cart" class="container">
+    <div class="card shadow">
+      <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">Your Cart</h5>
+      </div>
+      <div class="card-body">
+        <div class="cart-item mb-2" id="itemA">Wireless Headphones: <span>0</span></div>
+        <div class="cart-item mb-2" id="itemB">Smart Watch: <span>0</span></div>
+        <div class="cart-item mb-2" id="itemC">Bluetooth Speaker: <span>0</span></div>
+        <div class="cart-item mb-2" id="itemD">Laptop Backpack: <span>0</span></div>
+        <hr />
+        <strong>Total: $<span id="totalPrice">0</span></strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- Products -->
+  <div class="container mt-5">
+    <div class="row g-4">
+      <!-- Product A -->
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="card h-100 shadow-sm">
+          <img src="https://i.pinimg.com/736x/60/48/a6/6048a6fd59f2ae9743435ec812239806.jpg" class="card-img-top"
+            alt="Wireless Headphones">
+          <div class="card-body">
+            <h5 class="card-title">Wireless Headphones</h5>
+            <p class="text-muted fw-bold">$2000</p>
+            <p class="card-text small">Noise-cancelling headphones with 30hr battery life.</p>
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-sm btn-success" onclick="addToCart('A')">Add</button>
+              <a href="payment.html" class="btn btn-sm btn-primary">Buy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product B -->
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="card h-100 shadow-sm">
+          <img src="https://i.pinimg.com/736x/20/29/d5/2029d51d3f51b028d6f0d4b7bab3c44d.jpg" class="card-img-top"
+            alt="Smart Watch">
+          <div class="card-body">
+            <h5 class="card-title">Smart Watch</h5>
+            <p class="text-muted fw-bold">$2500</p>
+            <p class="card-text small">Smartwatch with health tracking and app alerts.</p>
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-sm btn-success" onclick="addToCart('B')">Add</button>
+              <a href="payment.html" class="btn btn-sm btn-primary">Buy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product C -->
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="card h-100 shadow-sm">
+          <img src="https://i.pinimg.com/736x/89/de/31/89de319b4ffdb11d80b9bfcfd86ece58.jpg" class="card-img-top"
+            alt="Bluetooth Speaker">
+          <div class="card-body">
+            <h5 class="card-title">Bluetooth Speaker</h5>
+            <p class="text-muted fw-bold">$1500</p>
+            <p class="card-text small">Waterproof 20W Bluetooth speaker with crisp audio.</p>
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-sm btn-success" onclick="addToCart('C')">Add</button>
+              <a href="payment.html" class="btn btn-sm btn-primary">Buy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product D -->
+      <div class="col-12 col-sm-6 col-md-3">
+        <div class="card h-100 shadow-sm">
+          <img src="https://i.pinimg.com/736x/07/aa/74/07aa741266d87fad93a30a081b7ce6c5.jpg" class="card-img-top"
+            alt="Laptop Backpack">
+          <div class="card-body">
+            <h5 class="card-title">Laptop Backpack</h5>
+            <p class="text-muted fw-bold">$1000</p>
+            <p class="card-text small">Secure backpack with USB port and anti-theft features.</p>
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-sm btn-success" onclick="addToCart('D')">Add</button>
+              <a href="payment.html" class="btn btn-sm btn-primary">Buy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

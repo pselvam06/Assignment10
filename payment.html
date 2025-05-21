@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Secure Payment - ShopNow</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        body {
+            background: linear-gradient(to right, #f8f9fa, #e0eafc);
+            min-height: 100vh;
+        }
+
+        .payment-card {
+            max-width: 450px;
+            margin: 60px auto;
+            background-color: #fff;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+        }
+
+        .payment-card h4 {
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+        }
+
+        .input-group-text {
+            background-color: #f1f1f1;
+        }
+
+        .success-msg {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">ShopNow</a>
+        </div>
+    </nav>
+
+    <!-- Payment Form -->
+    <div class="payment-card">
+        <h4 class="text-center text-primary">Payment Details</h4>
+        <form id="cardForm">
+            <div class="mb-3">
+                <label for="cardNumber" class="form-label">Card Number</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-credit-card"></i></span>
+                    <input type="text" class="form-control" id="cardNumber" maxlength="16" required>
+                </div>
+                <small class="text-danger" id="cardError"></small>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="expiryDate" class="form-label">Expiry Date</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                        <input type="text" class="form-control" id="expiryDate" placeholder="MM/YY" required>
+                    </div>
+                    <small class="text-danger" id="expiryError"></small>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="cvv" class="form-label">CVV</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                        <input type="text" class="form-control" id="cvv" maxlength="3" required>
+                    </div>
+                    <small class="text-danger" id="cvvError"></small>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="name" class="form-label">Name on Card</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" class="form-control" id="name" required>
+                </div>
+                <small class="text-danger" id="nameError"></small>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                    <input type="email" class="form-control" id="email" required>
+                </div>
+                <small class="text-danger" id="emailError"></small>
+            </div>
+
+            <div class="d-grid gap-2 mt-4">
+                <button type="submit" class="btn btn-success">Pay Now</button>
+                <button type="button" class="btn btn-secondary" >Cancel</button>
+            </div>
+
+            <div class="success" id="cardValidation"></div>
+        </form>
+    </div>
+
+    <!-- JS Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+</body>
+
+</html>
