@@ -1,51 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ShopNow - Products</title>
-  <!-- Bootstrap CSS -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopNow - Trending Products</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body > .main-content {
+      flex: 1;
+    }
+
+    .card {
+      transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      border-radius: 16px;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+    }
+
     .card img {
       object-fit: contain;
       height: 200px;
+      padding: 10px;
     }
 
-    #cart {
-      position: fixed;
-      right: 20px;
-      top: 80px;
-      width: 300px;
-      z-index: 1000;
+    .badge-trending {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #ff5733;
+      color: white;
+      font-size: 0.75rem;
     }
 
-    @media (max-width: 768px) {
-      #cart {
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        width: 100%;
-        top: auto;
-        border-top: 2px solid #ccc;
-        background: #fff;
-        padding-bottom: 10px;
-      }
-    }
+   #cart {
+  position: fixed;
+  right: 20px;
+  top: 80px;
+  width: 300px;
+  z-index: 1000;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  #cart {
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 40vh;
+    max-height: none;
+    border-top: 2px solid #ccc;
+    background: #fff;
+    overflow-y: auto;
+    padding: 0 10px 10px;
+  }
+
+  #cart .card-header {
+    position: sticky;
+    top: 0;
+    background-color: #0d6efd;
+    z-index: 10;
+  }
+
+  #cart .card-body {
+    padding-top: 10px;
+    font-size: 0.95rem;
+  }
+}
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+}
   </style>
 </head>
-<body>
 
+<body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
     <div class="container">
-      <a class="navbar-brand" href="#">ShopNow</a>
+      <a class="navbar-brand fw-bold" href="#">🛒 ShopNow</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav me-auto">
+        <ul class="navbar-nav ms-auto">
           <li class="nav-item">
             <a class="nav-link active" href="#">Home</a>
           </li>
@@ -54,11 +107,11 @@
     </div>
   </nav>
 
-  <!-- Brand Header -->
-  <div class="text-center py-5 bg-light">
-    <h1 class="display-4 fw-bold">Electronics Products</h1>
-    <p class="lead">Just Do It. Shop the latest collection</p>
-  </div>
+  <!-- Header -->
+  <header class="bg-light text-center py-5">
+    <h1 class="display-5 fw-bold">Trending Electronics</h1>
+    <p class="lead text-muted">Upgrade your gear with the latest tech must-haves.</p>
+  </header>
 
   <!-- Cart Summary -->
   <div id="cart" class="container">
@@ -70,74 +123,93 @@
         <div class="cart-item mb-2" id="itemA">Wireless Headphones: <span>0</span></div>
         <div class="cart-item mb-2" id="itemB">Smart Watch: <span>0</span></div>
         <div class="cart-item mb-2" id="itemC">Bluetooth Speaker: <span>0</span></div>
-        <div class="cart-item mb-2" id="itemD">Product D: <span>0</span></div>
+        <div class="cart-item mb-2" id="itemD">Laptop Backpack: <span>0</span></div>
         <hr />
         <strong>Total: $<span id="totalPrice">0</span></strong>
       </div>
     </div>
   </div>
-  <!-- Product Listing -->
-  <div class="container my-5">
-    <h2 class="mb-4">Our Products</h2>
-    <div class="row g-4">
 
+  <!-- Main Content -->
+  <div class="container main-content my-5">
+    <h2 class="mb-4">Top Picks</h2>
+    <div class="row g-4">
       <!-- Product A -->
-      <div class="col-md-3">
-        <div class="card h-100">
+      <div class="col-sm-6 col-md-3">
+        <div class="card h-100 position-relative">
+          <span class="badge badge-trending rounded-pill px-3 py-1">Hot</span>
           <img src="https://i.pinimg.com/736x/60/48/a6/6048a6fd59f2ae9743435ec812239806.jpg" class="card-img-top" alt="Wireless Headphones">
-          <div class="card-body">
+          <div class="card-body text-center">
             <h5 class="card-title">Wireless Headphones</h5>
-            <p class="card-text">$2000</p>
-            <button class="btn btn-outline-primary btn-sm" onclick="addToCart('A')">Add to Cart</button>
-            <a href="details.html" class="btn btn-primary btn-sm">Buy Now</a>
+            <p class="text-muted fw-semibold">$2000</p>
+            <div class="d-flex justify-content-around">
+              <button class="btn btn-outline-success btn-sm" onclick="addToCart('A')">Add</button>
+              <a href="details.html" class="btn btn-primary btn-sm">Buy</a>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Product B -->
-      <div class="col-md-3">
-        <div class="card h-100">
+      <div class="col-sm-6 col-md-3">
+        <div class="card h-100 position-relative">
+          <span class="badge badge-trending rounded-pill px-3 py-1">Trending</span>
           <img src="https://i.pinimg.com/736x/20/29/d5/2029d51d3f51b028d6f0d4b7bab3c44d.jpg" class="card-img-top" alt="Smart Watch">
-          <div class="card-body">
+          <div class="card-body text-center">
             <h5 class="card-title">Smart Watch</h5>
-            <p class="card-text">$2500</p>
-            <button class="btn btn-outline-primary btn-sm" onclick="addToCart('B')">Add to Cart</button>
-            <a href="details.html" class="btn btn-primary btn-sm">Buy Now</a>
+            <p class="text-muted fw-semibold">$2500</p>
+            <div class="d-flex justify-content-around">
+              <button class="btn btn-outline-success btn-sm" onclick="addToCart('B')">Add</button>
+              <a href="details.html" class="btn btn-primary btn-sm">Buy</a>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Product C -->
-      <div class="col-md-3">
-        <div class="card h-100">
+      <div class="col-sm-6 col-md-3">
+        <div class="card h-100 position-relative">
+          <span class="badge badge-trending rounded-pill px-3 py-1">Bestseller</span>
           <img src="https://i.pinimg.com/736x/89/de/31/89de319b4ffdb11d80b9bfcfd86ece58.jpg" class="card-img-top" alt="Bluetooth Speaker">
-          <div class="card-body">
+          <div class="card-body text-center">
             <h5 class="card-title">Bluetooth Speaker</h5>
-            <p class="card-text">$1500</p>
-            <button class="btn btn-outline-primary btn-sm" onclick="addToCart('C')">Add to Cart</button>
-            <a href="details.html" class="btn btn-primary btn-sm">Buy Now</a>
+            <p class="text-muted fw-semibold">$1500</p>
+            <div class="d-flex justify-content-around">
+              <button class="btn btn-outline-success btn-sm" onclick="addToCart('C')">Add</button>
+              <a href="details.html" class="btn btn-primary btn-sm">Buy</a>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Product D -->
-      <div class="col-md-3">
-        <div class="card h-100">
+      <div class="col-sm-6 col-md-3">
+        <div class="card h-100 position-relative">
+          <span class="badge badge-trending rounded-pill px-3 py-1">New</span>
           <img src="https://i.pinimg.com/736x/07/aa/74/07aa741266d87fad93a30a081b7ce6c5.jpg" class="card-img-top" alt="Laptop Backpack">
-          <div class="card-body">
+          <div class="card-body text-center">
             <h5 class="card-title">Laptop Backpack</h5>
-            <p class="card-text">$1000</p>
-            <button class="btn btn-outline-primary btn-sm" onclick="addToCart('D')">Add to Cart</button>
-            <a href="details.html" class="btn btn-primary btn-sm">Buy Now</a>
+            <p class="text-muted fw-semibold">$1000</p>
+            <div class="d-flex justify-content-around">
+              <button class="btn btn-outline-success btn-sm" onclick="addToCart('D')">Add</button>
+              <a href="details.html" class="btn btn-primary btn-sm">Buy</a>
+            </div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 
-  <!-- Bootstrap JS -->
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-4">
+    <p class="mb-1">&copy; 2023 ShopNow. All rights reserved.</p>
+    <a href="#" class="text-white me-2">Privacy Policy</a> |
+    <a href="#" class="text-white ms-2">Terms of Service</a>
+  </footer>
+
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
 </body>
+
 </html>

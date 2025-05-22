@@ -10,7 +10,7 @@ function addToCart(product) {
         total += 2000;
 
         document.getElementById("itemA").textContent ="Wireless Headphones:" + countA;
-    }
+          }
 
     else if (product === 'B') { 
         countB += 1;
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("cardForm");
 
     form.addEventListener("submit", function (e) {  
-        e.preventDefault(); // Prevent the form from submitting
+        e.preventDefault(); 
         const cardNumber = document.getElementById("cardNumber").value.trim();   
         const expiryDate = document.getElementById("expiryDate").value.trim();
         const cvv = document.getElementById("cvv").value.trim();
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let isValid = true;
 
-        // Check if the email is valid      
+           
         if (!cardNumberPattern.test(cardNumber)) {
            document.getElementById("cardError").textContent = "Please enter a valid card number.";
               isValid = false;
